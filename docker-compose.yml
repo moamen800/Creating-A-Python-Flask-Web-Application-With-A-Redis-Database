@@ -1,0 +1,15 @@
+version: '3'  # Specify the version of the docker-compose file format
+
+services:
+  web:  # Define the Flask web application service
+    build: .  # Build the Docker image using the Dockerfile in the current directory
+    ports:
+      - "9000:5000"  # Map port 9000 on the host to port 5000 in the container (Flask default port)
+    volumes:
+      - .:/app  # Mount the current directory (project files) to the /app directory in the container
+    environment:
+      FLASK_DEBUG: "true"  # Enable Flask debugging mode for development
+
+  redis:  # Define the Redis service
+    image: "redis:alpine"  # Use the official Redis image with the lightweight Alpine Linux version
+
